@@ -4,6 +4,10 @@ bundle:
 include:
   - resources/*.yml
 
+sync:
+  exclude:
+    - dashboards/*.lvdash.json
+
 variables:
   environment:
     description: Deployment environment
@@ -21,6 +25,9 @@ variables:
     description: Azure Storage Account name
     default: storagetoxdev
 
+  warehouse_id:
+    description: SQL Warehouse ID used by the dashboard
+
 targets:
   dev:
     mode: development
@@ -34,6 +41,7 @@ targets:
       catalog_name: smart_data_dev
       schema_name: storage
       storage_account: storagetoxdev
+      warehouse_id: b948d29bb0ec17da
 
   prod:
     mode: production
@@ -49,3 +57,4 @@ targets:
       catalog_name: smart_data_prod
       schema_name: storage
       storage_account: storagetoxprod
+      warehouse_id: ceb52050a86d3380
