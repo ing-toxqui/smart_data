@@ -1,0 +1,82 @@
+resources:
+  jobs:
+    smart_data_pipeline:
+      name: smart_data_pipeline_${var.environment}
+
+      max_concurrent_runs: 1
+
+      parameters:
+        - name: catalog_name
+          default: ${var.catalog_name}
+        - name: schema_name
+          default: ${var.schema_name}
+        - name: storage_account
+          default: ${var.storage_account}
+
+      tasks:
+        - task_key: creacion_objetos
+          max_retries: 1
+          min_retry_interval_millis: 60000
+          notebook_task:
+            notebook_path: ../notebooks/setup/00_creacion_objetos.ipynb
+            base_parameters:
+              catalog_name: "{{job.parameters.catalog_name}}"
+              schema_name: "{{job.parameters.schema_name}}"
+              storage_account: "{{job.parameters.storage_account}}"
+
+        - task_key: inicia_proceso
+          depends_on:
+            - task_key: creacion_objetos
+          max_retries: 1
+          min_retry_interval_millis: 60000
+          notebook_task:
+            notebook_path: ../notebooks/pipeline/00_inicia_proceso.ipynb
+
+        - task_key: procesa_bronze
+          depends_on:
+            - task_key: inicia_proceso
+          max_retries: 2
+          min_retry_interval_millis: 120000
+          notebook_task:
+            notebook_path: ../notebooks/pipeline/01_procesa_bronze.ipynb
+            base_parameters:
+              catalog_name: "{{job.parameters.catalog_name}}"
+              schema_name: "{{job.parameters.schema_name}}"
+              storage_account: "{{job.parameters.storage_account}}"
+              id_proceso: "{{tasks.inicia_proceso.values.id_proceso}}"
+
+        - task_key: procesa_silver
+          depends_on:
+            - task_key: procesa_bronze
+          max_retries: 2
+          min_retry_interval_millis: 120000
+          notebook_task:
+            notebook_path: ../notebooks/pipeline/02_procesa_silver.ipynb
+            base_parameters:
+              catalog_name: "{{job.parameters.catalog_name}}"
+              schema_name: "{{job.parameters.schema_name}}"
+              id_proceso: "{{tasks.inicia_proceso.values.id_proceso}}"
+
+        - task_key: procesa_gold
+          depends_on:
+            - task_key: procesa_silver
+          max_retries: 2
+          min_retry_interval_millis: 120000
+          notebook_task:
+            notebook_path: ../notebooks/pipeline/03_procesa_gold.ipynb
+            base_parameters:
+              catalog_name: "{{job.parameters.catalog_name}}"
+              schema_name: "{{job.parameters.schema_name}}"
+              id_proceso: "{{tasks.inicia_proceso.values.id_proceso}}"
+
+        - task_key: mueve_archivos
+          depends_on:
+            - task_key: procesa_gold
+          max_retries: 1
+          min_retry_interval_millis: 120000
+          notebook_task:
+            notebook_path: ../notebooks/pipeline/04_mueve_archivos.ipynb
+            base_parameters:
+              catalog_name: "{{job.parameters.catalog_name}}"
+              schema_name: "{{job.parameters.schema_name}}"
+              id_proceso: "{{tasks.inicia_proceso.values.id_proceso}}"
