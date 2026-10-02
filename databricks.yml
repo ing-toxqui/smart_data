@@ -1,0 +1,51 @@
+bundle:
+  name: smart_data
+
+include:
+  - resources/*.yml
+
+variables:
+  environment:
+    description: Deployment environment
+    default: dev
+
+  catalog_name:
+    description: Unity Catalog catalog name
+    default: smart_data_dev
+
+  schema_name:
+    description: Unity Catalog schema name
+    default: storage
+
+  storage_account:
+    description: Azure Storage Account name
+    default: storagetoxdev
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+    workspace:
+      host: https://adb-7405614906602175.15.azuredatabricks.net
+
+    variables:
+      environment: dev
+      catalog_name: smart_data_dev
+      schema_name: storage
+      storage_account: storagetoxdev
+
+  prod:
+    mode: production
+
+    workspace:
+      host: https://adb-7405615989644816.16.azuredatabricks.net
+
+    git:
+      branch: main
+
+    variables:
+      environment: prod
+      catalog_name: smart_data_prod
+      schema_name: storage
+      storage_account: storagetoxprod
