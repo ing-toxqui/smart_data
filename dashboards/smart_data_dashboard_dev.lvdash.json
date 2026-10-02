@@ -1,0 +1,1481 @@
+{
+  "datasets": [
+    {
+      "name": "f13104e8",
+      "displayName": "vw_dashboard_resumen_mensual",
+      "config": {
+        "version": "1.1",
+        "source": "smart_data_dev.storage.vw_dashboard_resumen_mensual",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "72fe1c6d",
+      "displayName": "vw_dashboard_actividad_mensual",
+      "config": {
+        "version": "1.1",
+        "source": "smart_data_dev.storage.vw_dashboard_actividad_mensual",
+        "dimensions": [
+          {
+            "name": "periodo",
+            "expr": "periodo"
+          },
+          {
+            "name": "periodo_fecha",
+            "expr": "periodo_fecha"
+          }
+        ],
+        "measures": [
+          {
+            "name": "visitantes_con_actividad",
+            "expr": "MAX(visitantes_con_actividad)",
+            "displayName": "Visitantes con actividad"
+          },
+          {
+            "name": "total_visitas",
+            "expr": "MAX(total_visitas)",
+            "displayName": "Total visitas"
+          },
+          {
+            "name": "promedio_visitas_por_visitante",
+            "expr": "MAX(promedio_visitas_por_visitante)",
+            "displayName": "Promedio visitas por visitante"
+          }
+        ]
+      }
+    },
+    {
+      "name": "703e6944",
+      "displayName": "vw_dashboard_visitantes",
+      "config": {
+        "version": "1.1",
+        "source": "smart_data_dev.storage.vw_dashboard_visitantes",
+        "dimensions": [
+          {
+            "name": "periodo",
+            "expr": "periodo"
+          },
+          {
+            "name": "email",
+            "expr": "email"
+          },
+          {
+            "name": "fecha_ultima_visita",
+            "expr": "fecha_ultima_visita"
+          },
+          {
+            "name": "estado_visitante",
+            "expr": "estado_visitante"
+          },
+          {
+            "name": "visitas_mes_actual",
+            "expr": "visitas_mes_actual"
+          },
+          {
+            "name": "visitas_anio_actual",
+            "expr": "visitas_anio_actual"
+          },
+          {
+            "name": "visitas_totales",
+            "expr": "visitas_totales"
+          }
+        ]
+      }
+    },
+    {
+      "name": "18e9f5b7",
+      "displayName": "vw_dashboard_procesamiento",
+      "config": {
+        "version": "1.1",
+        "source": "smart_data_dev.storage.vw_dashboard_procesamiento",
+        "dimensions": [
+          {
+            "name": "id_proceso",
+            "expr": "id_proceso"
+          },
+          {
+            "name": "fecha_ejecucion",
+            "expr": "fecha_ejecucion"
+          },
+          {
+            "name": "fecha_ejecucion_dia",
+            "expr": "fecha_ejecucion_dia"
+          }
+        ],
+        "measures": [
+          {
+            "name": "archivos_procesados",
+            "expr": "SUM(archivos_procesados)",
+            "displayName": "Archivos procesados"
+          },
+          {
+            "name": "registros_bronze",
+            "expr": "SUM(registros_bronze)",
+            "displayName": "Registros Bronze"
+          },
+          {
+            "name": "registros_invalidos_bronze",
+            "expr": "SUM(registros_invalidos_bronze)",
+            "displayName": "Registros inválidos"
+          },
+          {
+            "name": "registros_silver",
+            "expr": "SUM(registros_silver)",
+            "displayName": "Registros Silver"
+          },
+          {
+            "name": "registros_error",
+            "expr": "SUM(registros_error)",
+            "displayName": "Registros con error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "5cf02247",
+      "displayName": "vw_dashboard_errores",
+      "config": {
+        "version": "1.1",
+        "source": "smart_data_dev.storage.vw_dashboard_errores",
+        "dimensions": [
+          {
+            "name": "id_proceso",
+            "expr": "id_proceso"
+          },
+          {
+            "name": "fecha_ejecucion",
+            "expr": "fecha_ejecucion"
+          },
+          {
+            "name": "nombre_archivo",
+            "expr": "nombre_archivo"
+          },
+          {
+            "name": "razon_error",
+            "expr": "razon_error"
+          },
+          {
+            "name": "total_errores",
+            "expr": "total_errores"
+          },
+          {
+            "name": "fecha_ejecucion_dia",
+            "expr": "fecha_ejecucion_dia"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "resumen_historico",
+      "displayName": "vw_dashboard_resumen_historico",
+      "config": {
+        "version": "1.1",
+        "source": "smart_data_dev.storage.vw_dashboard_resumen_mensual",
+        "dimensions": [
+          {
+            "name": "periodo_fecha",
+            "expr": "periodo_fecha"
+          }
+        ],
+        "measures": [
+          {
+            "name": "total_visitantes",
+            "expr": "MAX(total_visitantes)",
+            "displayName": "Total visitantes"
+          },
+          {
+            "name": "visitantes_activos",
+            "expr": "MAX(visitantes_activos)",
+            "displayName": "Visitantes activos"
+          },
+          {
+            "name": "visitantes_con_actividad",
+            "expr": "MAX(visitantes_con_actividad)",
+            "displayName": "Visitantes con actividad"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "c6b3aaa3",
+      "displayName": "Resumen de visitantes",
+      "layout": [
+        {
+          "widget": {
+            "name": "periodo_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90ce5011a5bc970b2077857771_periodo",
+                "query": {
+                  "datasetName": "f13104e8",
+                  "fields": [
+                    {
+                      "name": "periodo",
+                      "expression": "`periodo`"
+                    },
+                    {
+                      "name": "periodo_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90ceb41f9d811331ea8ed9ec58_periodo",
+                "query": {
+                  "datasetName": "703e6944",
+                  "fields": [
+                    {
+                      "name": "periodo",
+                      "expression": "`periodo`"
+                    },
+                    {
+                      "name": "periodo_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "disallowAll": true,
+              "frame": {
+                "showTitle": true,
+                "title": "Periodo"
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "periodo",
+                    "queryName": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90ce5011a5bc970b2077857771_periodo"
+                  },
+                  {
+                    "fieldName": "periodo",
+                    "queryName": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90ceb41f9d811331ea8ed9ec58_periodo"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "header_p1",
+            "multilineTextboxSpec": {
+              "lines": [
+                "## Smart Data — Visitor Analytics\n",
+                "Resumen mensual de visitantes y actividad"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_total_visitantes",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f13104e8",
+                  "fields": [
+                    {
+                      "name": "max(total_visitantes)",
+                      "expression": "MAX(`total_visitantes`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Visitantes totales"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "max(total_visitantes)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_activos",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f13104e8",
+                  "fields": [
+                    {
+                      "name": "max(visitantes_activos)",
+                      "expression": "MAX(`visitantes_activos`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Visitantes activos"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "max(visitantes_activos)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 4,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_nuevos",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f13104e8",
+                  "fields": [
+                    {
+                      "name": "max(visitantes_nuevos)",
+                      "expression": "MAX(`visitantes_nuevos`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Visitantes nuevos"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "max(visitantes_nuevos)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 4,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_con_actividad",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f13104e8",
+                  "fields": [
+                    {
+                      "name": "max(visitantes_con_actividad)",
+                      "expression": "MAX(`visitantes_con_actividad`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Visitantes con actividad"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "max(visitantes_con_actividad)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 7,
+            "y": 4,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_visitas_mes",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f13104e8",
+                  "fields": [
+                    {
+                      "name": "max(visitas_mes)",
+                      "expression": "MAX(`visitas_mes`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Visitas del mes"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "max(visitas_mes)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 10,
+            "y": 4,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "table_top_visitantes",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "703e6944",
+                  "fields": [
+                    {
+                      "name": "email",
+                      "expression": "`email`"
+                    },
+                    {
+                      "name": "visitas_mes_actual",
+                      "expression": "`visitas_mes_actual`"
+                    },
+                    {
+                      "name": "visitas_anio_actual",
+                      "expression": "`visitas_anio_actual`"
+                    },
+                    {
+                      "name": "visitas_totales",
+                      "expression": "`visitas_totales`"
+                    },
+                    {
+                      "name": "fecha_ultima_visita",
+                      "expression": "`fecha_ultima_visita`"
+                    },
+                    {
+                      "name": "estado_visitante",
+                      "expression": "`estado_visitante`"
+                    }
+                  ],
+                  "disaggregated": true,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`visitas_mes_actual`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Top visitantes del periodo",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "email"
+                  },
+                  {
+                    "fieldName": "visitas_mes_actual"
+                  },
+                  {
+                    "fieldName": "visitas_anio_actual"
+                  },
+                  {
+                    "fieldName": "visitas_totales"
+                  },
+                  {
+                    "fieldName": "fecha_ultima_visita"
+                  },
+                  {
+                    "fieldName": "estado_visitante"
+                  }
+                ],
+                "rowOrder": [
+                  {
+                    "by": "column-reversed",
+                    "field": {
+                      "index": 1
+                    }
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 14,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "chart_evolucion",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "resumen_historico",
+                  "fields": [
+                    {
+                      "name": "periodo_fecha",
+                      "expression": "`periodo_fecha`"
+                    },
+                    {
+                      "name": "measure(total_visitantes)",
+                      "expression": "MEASURE(`total_visitantes`)"
+                    },
+                    {
+                      "name": "measure(visitantes_activos)",
+                      "expression": "MEASURE(`visitantes_activos`)"
+                    },
+                    {
+                      "name": "measure(visitantes_con_actividad)",
+                      "expression": "MEASURE(`visitantes_con_actividad`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Evolución de visitantes"
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "periodo_fecha",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(total_visitantes)",
+                      "displayName": "Total visitantes"
+                    },
+                    {
+                      "fieldName": "measure(visitantes_activos)",
+                      "displayName": "Visitantes activos"
+                    },
+                    {
+                      "fieldName": "measure(visitantes_con_actividad)",
+                      "displayName": "Con actividad"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "chart_actividad_mensual",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "72fe1c6d",
+                  "fields": [
+                    {
+                      "name": "periodo_fecha",
+                      "expression": "`periodo_fecha`"
+                    },
+                    {
+                      "name": "measure(total_visitas)",
+                      "expression": "MEASURE(`total_visitas`)"
+                    },
+                    {
+                      "name": "measure(visitantes_con_actividad)",
+                      "expression": "MEASURE(`visitantes_con_actividad`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Actividad mensual"
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "periodo_fecha",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(total_visitas)",
+                      "displayName": "Total visitas"
+                    },
+                    {
+                      "fieldName": "measure(visitantes_con_actividad)",
+                      "displayName": "Visitantes con actividad"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "chart_promedio_visitas",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "72fe1c6d",
+                  "fields": [
+                    {
+                      "name": "periodo_fecha",
+                      "expression": "`periodo_fecha`"
+                    },
+                    {
+                      "name": "measure(promedio_visitas_por_visitante)",
+                      "expression": "MEASURE(`promedio_visitas_por_visitante`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Promedio de visitas por visitante"
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "periodo_fecha",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(promedio_visitas_por_visitante)",
+                  "displayName": "Promedio visitas / visitante",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "procesamiento_calidad",
+      "displayName": "Procesamiento y calidad",
+      "layout": [
+        {
+          "widget": {
+            "name": "filter_id_proceso",
+            "queries": [
+              {
+                "name": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cef6199e92f96cb91fd8ad34_id_proceso",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "id_proceso",
+                      "expression": "`id_proceso`"
+                    },
+                    {
+                      "name": "id_proceso_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cf311f5ba73f42cf4c761d51_id_proceso",
+                "query": {
+                  "datasetName": "5cf02247",
+                  "fields": [
+                    {
+                      "name": "id_proceso",
+                      "expression": "`id_proceso`"
+                    },
+                    {
+                      "name": "id_proceso_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "ID Proceso"
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "id_proceso",
+                    "queryName": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cef6199e92f96cb91fd8ad34_id_proceso"
+                  },
+                  {
+                    "fieldName": "id_proceso",
+                    "queryName": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cf311f5ba73f42cf4c761d51_id_proceso"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 4,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "header_p2",
+            "multilineTextboxSpec": {
+              "lines": [
+                "## Procesamiento y calidad de datos\n",
+                "Monitoreo de cargas, registros procesados y errores"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "filter_fecha_ejecucion",
+            "queries": [
+              {
+                "name": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cef6199e92f96cb91fd8ad34_fecha_ejecucion_dia",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "fecha_ejecucion_dia",
+                      "expression": "`fecha_ejecucion_dia`"
+                    },
+                    {
+                      "name": "fecha_ejecucion_dia_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cf311f5ba73f42cf4c761d51_fecha_ejecucion_dia",
+                "query": {
+                  "datasetName": "5cf02247",
+                  "fields": [
+                    {
+                      "name": "fecha_ejecucion_dia",
+                      "expression": "`fecha_ejecucion_dia`"
+                    },
+                    {
+                      "name": "fecha_ejecucion_dia_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "presets": [
+                {
+                  "expression": "now/d~now/d"
+                },
+                {
+                  "expression": "now-1d/d~now-1d/d"
+                },
+                {
+                  "expression": "now-7d/d~now/d"
+                },
+                {
+                  "expression": "now-30d/d~now/d"
+                }
+              ],
+              "frame": {
+                "showTitle": true,
+                "title": "Fecha de ejecución"
+              },
+              "widgetType": "filter-date-range-picker",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "fecha_ejecucion_dia",
+                    "queryName": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cef6199e92f96cb91fd8ad34_fecha_ejecucion_dia"
+                  },
+                  {
+                    "fieldName": "fecha_ejecucion_dia",
+                    "queryName": "dashboards/01f1be907af51408ae682a887c71f0f0/datasets/01f1be90cf311f5ba73f42cf4c761d51_fecha_ejecucion_dia"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 2,
+            "width": 4,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_archivos",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "measure(archivos_procesados)",
+                      "expression": "MEASURE(`archivos_procesados`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Archivos procesados"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(archivos_procesados)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "chart_registros",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "fecha_ejecucion",
+                      "expression": "`fecha_ejecucion`"
+                    },
+                    {
+                      "name": "measure(registros_bronze)",
+                      "expression": "MEASURE(`registros_bronze`)"
+                    },
+                    {
+                      "name": "measure(registros_silver)",
+                      "expression": "MEASURE(`registros_silver`)"
+                    },
+                    {
+                      "name": "measure(registros_error)",
+                      "expression": "MEASURE(`registros_error`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Registros procesados por ejecución"
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "fecha_ejecucion",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(registros_bronze)",
+                      "displayName": "Bronze"
+                    },
+                    {
+                      "fieldName": "measure(registros_silver)",
+                      "displayName": "Silver"
+                    },
+                    {
+                      "fieldName": "measure(registros_error)",
+                      "displayName": "Errores"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_bronze",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "measure(registros_bronze)",
+                      "expression": "MEASURE(`registros_bronze`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Registros Bronze"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(registros_bronze)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 4,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "bar_errores_tipo",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5cf02247",
+                  "fields": [
+                    {
+                      "name": "razon_error",
+                      "expression": "`razon_error`"
+                    },
+                    {
+                      "name": "sum(total_errores)",
+                      "expression": "SUM(`total_errores`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Errores por tipo"
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "razon_error",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_errores)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_silver",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "measure(registros_silver)",
+                      "expression": "MEASURE(`registros_silver`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Registros Silver"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(registros_silver)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 4,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "bar_errores_archivo",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5cf02247",
+                  "fields": [
+                    {
+                      "name": "nombre_archivo",
+                      "expression": "`nombre_archivo`"
+                    },
+                    {
+                      "name": "sum(total_errores)",
+                      "expression": "SUM(`total_errores`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Errores por archivo"
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "nombre_archivo",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_errores)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_invalidos",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "measure(registros_invalidos_bronze)",
+                      "expression": "MEASURE(`registros_invalidos_bronze`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Registros inválidos",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(registros_invalidos_bronze)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 7,
+            "y": 4,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "table_errores",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5cf02247",
+                  "fields": [
+                    {
+                      "name": "fecha_ejecucion",
+                      "expression": "`fecha_ejecucion`"
+                    },
+                    {
+                      "name": "nombre_archivo",
+                      "expression": "`nombre_archivo`"
+                    },
+                    {
+                      "name": "razon_error",
+                      "expression": "`razon_error`"
+                    },
+                    {
+                      "name": "total_errores",
+                      "expression": "`total_errores`"
+                    },
+                    {
+                      "name": "id_proceso",
+                      "expression": "`id_proceso`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Detalle de errores"
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "fecha_ejecucion"
+                  },
+                  {
+                    "fieldName": "nombre_archivo"
+                  },
+                  {
+                    "fieldName": "razon_error"
+                  },
+                  {
+                    "fieldName": "total_errores"
+                  },
+                  {
+                    "fieldName": "id_proceso"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 14,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "counter_errores",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "18e9f5b7",
+                  "fields": [
+                    {
+                      "name": "measure(registros_error)",
+                      "expression": "MEASURE(`registros_error`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "Registros con error"
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(registros_error)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 10,
+            "y": 4,
+            "width": 2,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

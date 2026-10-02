@@ -1,0 +1,60 @@
+bundle:
+  name: smart_data
+
+include:
+  - resources/*.yml
+
+sync:
+  exclude:
+    - dashboards/*.lvdash.json
+
+variables:
+  environment:
+    description: Deployment environment
+    default: dev
+
+  catalog_name:
+    description: Unity Catalog catalog name
+    default: smart_data_dev
+
+  schema_name:
+    description: Unity Catalog schema name
+    default: storage
+
+  storage_account:
+    description: Azure Storage Account name
+    default: storagetoxdev
+
+  warehouse_id:
+    description: SQL Warehouse ID used by the dashboard
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+    workspace:
+      host: https://adb-7405614906602175.15.azuredatabricks.net
+
+    variables:
+      environment: dev
+      catalog_name: smart_data_dev
+      schema_name: storage
+      storage_account: storagetoxdev
+      warehouse_id: b948d29bb0ec17da
+
+  prod:
+    mode: production
+
+    workspace:
+      host: https://adb-7405615989644816.16.azuredatabricks.net
+
+    git:
+      branch: main
+
+    variables:
+      environment: prod
+      catalog_name: smart_data_prod
+      schema_name: storage
+      storage_account: storagetoxprod
+      warehouse_id: ceb52050a86d3380

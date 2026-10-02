@@ -1,0 +1,14 @@
+resources:
+  jobs:
+    dashboard_setup:
+      name: smart_data_dashboard_setup_${var.environment}
+
+      tasks:
+        - task_key: crear_vistas_dashboard
+
+          notebook_task:
+            notebook_path: ../notebooks/dashboard/00_creacion_vistas_dashboard.ipynb
+
+            base_parameters:
+              catalog_name: ${var.catalog_name}
+              schema_name: ${var.schema_name}
